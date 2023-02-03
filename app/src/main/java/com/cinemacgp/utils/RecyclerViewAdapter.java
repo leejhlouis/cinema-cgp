@@ -41,8 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Movie movie = movies.get(position);
 
         holder.titleTextView.setText(movie.getTitle());
-        holder.releasedTextView.setText("Released\t: " + movie.getReleaseDate());
-        holder.popularityTextView.setText("Popularity\t: " + String.valueOf(movie.getPopularity()));
+        holder.releasedTextView.setText("Released\t\t: " + movie.getReleaseDate());
+        holder.popularityTextView.setText("Popularity\t\t: " + String.valueOf(movie.getPopularity()));
     }
 
     @Override

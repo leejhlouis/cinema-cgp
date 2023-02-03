@@ -7,65 +7,50 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemacgp.models.Movie;
 import com.cinemacgp.utils.APIService;
 import com.cinemacgp.utils.RecyclerViewAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter adapter;
-
-    private ArrayList<Movie> movies;
+public class MainActivity extends AppCompatActivity {
+    private BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.movies = new ArrayList<>();
+        if (savedInstanceState == null) {
+            setFragment(new HomeFragment());
+        }
 
-        new FetchAPITask().execute();
-
-        recyclerView = findViewById(R.id.movieList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new RecyclerViewAdapter(this);
-        adapter.setClickListener(this);
+        this.bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            switch(item.getItemId()){
+                case R.id.home:
+                    setFragment(new HomeFragment());
+                    break;
+                case R.id.location:
+                    setFragment(new LocationFragment());
+                    break;
+                case R.id.rent:
+//                    setFragment(new HomeFragment());
+                    break;
+            }
+            return true;
+        });
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, adapter.getItem(position).getTitle(), Toast.LENGTH_SHORT).show();
-    }
-
-    private class FetchAPITask extends AsyncTask<Void, Void, Void> {
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            this.progressDialog = ProgressDialog.show(MainActivity.this, "", "Loading...", true);
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            movies = APIService.getMoviesNowPlaying();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            this.progressDialog.dismiss();
-
-            adapter.setMovies(movies);
-            recyclerView.setAdapter(adapter);
-        }
+    private void setFragment(Fragment fragment){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.placeholder, fragment);
+        ft.commit();
     }
 }

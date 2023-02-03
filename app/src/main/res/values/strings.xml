@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CinemaCGP</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_location">Location</string>
+    <string name="nav_rent">Rent</string>
+
+    <string name="map_key" translatable="false">
+        AIzaSyD-onDScNchdVTAi11x2celQCODUsCbJD4
+    </string>
 </resources>
