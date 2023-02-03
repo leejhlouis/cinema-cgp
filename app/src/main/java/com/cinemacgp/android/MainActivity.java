@@ -1,6 +1,7 @@
 package com.cinemacgp.android;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -41,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
                     setFragment(new LocationFragment());
                     break;
                 case R.id.rent:
-//                    setFragment(new HomeFragment());
+                    setFragment(new RentFragment());
                     break;
             }
             return true;
         });
     }
 
-    private void setFragment(Fragment fragment){
+    void setFragment(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.placeholder, fragment);
         ft.commit();
