@@ -22,4 +22,20 @@ public class Rent {
     public static Rent getInstance(@Nullable String name, @Nullable String phone, @Nullable String cinema){
         return rent = hasRented() ? rent : new Rent(name, phone, cinema);
     }
+
+    public static void cancelRent(){
+        rent = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getCinema() {
+        return cinema;
+    }
 }

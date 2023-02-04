@@ -9,9 +9,12 @@
     </string>
 
     <string-array name="cinema_branches">
-        <item>Cinema CGP Alpha</item>
-        <item>Cinema CGP Beta</item>
+        <item>Select your mini studio</item>
+        <item>CinemaCGP Alpha Mini Studio 1</item>
+        <item>CinemaCGP Alpha Mini Studio 2</item>
+        <item>CinemaCGP Alpha Mini Studio 3</item>
+        <item>CinemaCGP Alpha Mini Studio 4</item>
+        <item>CinemaCGP Beta Mini Studio 1</item>
+        <item>CinemaCGP Beta Mini Studio 2</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
